@@ -41,8 +41,15 @@ public class CandidateService {
         List<CandidateOutput> listCanOut = modelMapper.map(candidateRepository.findAll(), candidateOutputListType);
         List<CandidateOutput> listCanOut2 = new ArrayList<>();
         
+        ElectionOutput elOut = new ElectionOutput();
+        
+        PartyOutput ptOut = new PartyOutput();
+        
+        
         for(CandidateOutput cd : listCanOut) {
-        	System.out.println(cd);
+        	
+        	//alguma coisa
+        	
         }
         return listCanOut;
     }
@@ -118,6 +125,18 @@ public class CandidateService {
     }
     
     private void validateInput(CandidateInput candidateInput, boolean isUpdate){
+    	
+    	Integer maxName = candidateInput.getName().length();
+        Integer nM = candidateInput.getName().split(" ").length;
+        
+        if(maxName < 5) {
+        	throw new GenericOutputException("Nome deve ter no mínimo 5 letras!");
+        }
+
+        if(nM < 2) {
+        	throw new GenericOutputException("Nome deve ter no mínimo um sobrenome.");
+        }
+    	
         if (candidateInput.getNumberElection() == null){
             throw new GenericOutputException("Invalid number election");
         }

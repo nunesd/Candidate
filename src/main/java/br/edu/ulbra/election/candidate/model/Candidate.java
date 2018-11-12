@@ -1,7 +1,12 @@
 package br.edu.ulbra.election.candidate.model;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.persistence.*;
 
+import br.edu.ulbra.election.candidate.exception.GenericOutputException;
 import br.edu.ulbra.election.candidate.output.v1.ElectionOutput;
 import br.edu.ulbra.election.candidate.output.v1.PartyOutput;
 
@@ -62,16 +67,16 @@ public class Candidate {
 	public void setPartyId(Long partyId) {
 		this.partyId = partyId;
 	}
-	
-	public PartyOutput getPtOut() {
-		PartyOutput ptOut = new PartyOutput();
-		ptOut.setId(this.getPartyId());
-		return ptOut;
-	}
-	
-	public ElectionOutput getElOut() {
-		ElectionOutput elOut = new ElectionOutput();
-		elOut.setId(this.getElectionId());
-		return elOut;
-	}
+//	
+//	public PartyOutput getPtOut() {
+//		PartyOutput ptOut = new PartyOutput();
+//		ptOut.setId(this.getPartyId());
+//		return ptOut;
+//	}
+//	
+//	public ElectionOutput getElOut() {
+//		ElectionOutput elOut = new ElectionOutput();
+//		elOut.setId(this.getElectionId());
+//		return elOut;
+//	}
 }
