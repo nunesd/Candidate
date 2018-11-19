@@ -1,82 +1,64 @@
 package br.edu.ulbra.election.candidate.model;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import javax.persistence.*;
-
-import br.edu.ulbra.election.candidate.exception.GenericOutputException;
-import br.edu.ulbra.election.candidate.output.v1.ElectionOutput;
-import br.edu.ulbra.election.candidate.output.v1.PartyOutput;
 
 @Entity
 public class Candidate {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(nullable = false)
-	private String name;
-	
-	@Column(nullable = false, name="number")
-	private Long numberElection;
-	
-	@Column(nullable = false)
-	private Long electionId;
-	
-	@Column(nullable = false)
-	private Long partyId;
 
-	public Long getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column(nullable = false)
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    @Column(nullable = false)
+    private Long numberElection;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @Column(nullable = false)
+    private Long electionId;
 
-	public Long getNumberElection() {
-		return numberElection;
-	}
+    @Column(nullable = false)
+    private Long partyId;
 
-	public void setNumberElection(Long numberElection) {
-		this.numberElection = numberElection;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public Long getElectionId() {
-		return electionId;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setElectionId(Long electionId) {
-		this.electionId = electionId;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Long getPartyId() {
-		return partyId;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setPartyId(Long partyId) {
-		this.partyId = partyId;
-	}
-//	
-//	public PartyOutput getPtOut() {
-//		PartyOutput ptOut = new PartyOutput();
-//		ptOut.setId(this.getPartyId());
-//		return ptOut;
-//	}
-//	
-//	public ElectionOutput getElOut() {
-//		ElectionOutput elOut = new ElectionOutput();
-//		elOut.setId(this.getElectionId());
-//		return elOut;
-//	}
+    public Long getNumberElection() {
+        return numberElection;
+    }
+
+    public void setNumberElection(Long numberElection) {
+        this.numberElection = numberElection;
+    }
+
+    public Long getElectionId() {
+        return electionId;
+    }
+
+    public void setElectionId(Long electionId) {
+        this.electionId = electionId;
+    }
+
+    public Long getPartyId() {
+        return partyId;
+    }
+
+    public void setPartyId(Long partyId) {
+        this.partyId = partyId;
+    }
+
 }
