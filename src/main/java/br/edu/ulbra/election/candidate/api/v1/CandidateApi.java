@@ -7,47 +7,72 @@ import br.edu.ulbra.election.candidate.service.CandidateService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/v1/candidate")
 public class CandidateApi {
 
-    private final CandidateService candidateService;
+	private final CandidateService candidateService;
 
-    @Autowired
-    public CandidateApi(CandidateService candidateService){
-        this.candidateService = candidateService;
-    }
+	@Autowired
+	public CandidateApi(CandidateService candidateService) {
+		this.candidateService = candidateService;
+	}
 
-    @GetMapping("/")
-    @ApiOperation(value = "Get candidates List")
-    public List<CandidateOutput> getAll(){
-        return candidateService.getAll();
-    }
+	@GetMapping("/")
+	@ApiOperation(value = "Get candidates List")
+	public List<CandidateOutput> getAll() {
+		return candidateService.getAll();
+	}
 
-    @GetMapping("/{candidateId}")
-    @ApiOperation(value = "Get candidate by Id")
-    public CandidateOutput getById(@PathVariable Long candidateId){
-        return candidateService.getById(candidateId);
-    }
+	@GetMapping("/{candidateId}")
+	@ApiOperation(value = "Get candidate by Id")
+	public CandidateOutput getById(@PathVariable Long candidateId) {
+		return candidateService.getById(candidateId);
+	}
 
-    @PostMapping("/")
-    @ApiOperation(value = "Create new candidate")
-    public CandidateOutput create(@RequestBody CandidateInput candidateInput){
-        return candidateService.create(candidateInput);
-    }
+	@GetMapping("/getPartyCandidate/{partyId}")
+	@ApiOperation(value = "Get if exists party in candidate")
+	public CandidateOutput verificaParty(@PathVariable Long partyId) {
+		return candidateService.verifyParty(partyId);
+	}
 
-    @PutMapping("/{candidateId}")
-    @ApiOperation(value = "Update candidate")
-    public CandidateOutput update(@PathVariable Long candidateId, @RequestBody CandidateInput candidateInput){
-        return candidateService.update(candidateId, candidateInput);
-    }
+	@GetMapping("/getCandidateElection/{electionId}")
+	@ApiOperation(value = "Get if exists election in candidate")
+	public CandidateOutput verificaElection(@PathVariable Long electionId) {
+		return candidateService.verifyElection(electionId);
+	}
 
-    @DeleteMapping("/{candidateId}")
-    @ApiOperation(value = "Delete candidate")
-    public GenericOutput delete(@PathVariable Long candidateId){
-        return candidateService.delete(candidateId);
-    }
+	@GetMapping("/getByElectionAndNumber/{numberElection}/{electionId}")
+	@ApiOperation(value = "Get candidate by number")
+	public CandidateOutput verificaNumero(@PathVariable Long numberElection, @PathVariable Long electionId) {
+		return candidateService.verifyNumero(numberElection, electionId);
+	}
+
+	@GetMapping("/getCandidateList/{electionId}")
+	@ApiOperation(value = "Get list of candidates")
+	public ArrayList<CandidateOutput> getListCandidatesByElectionId(@PathVariable Long electionId) {
+		return candidateService.getListCandidatesByElectionId(electionId);
+	}
+
+	@PostMapping("/")
+	@ApiOperation(value = "Create new candidate")
+	public CandidateOutput create(@RequestBody CandidateInput candidateInput) {
+		return candidateService.create(candidateInput);
+	}
+
+	@PutMapping("/{candidateId}")
+	@ApiOperation(value = "Update candidate")
+	public CandidateOutput update(@PathVariable Long candidateId, @RequestBody CandidateInput candidateInput) {
+		return candidateService.update(candidateId, candidateInput);
+	}
+
+	@DeleteMapping("/{candidateId}")
+	@ApiOperation(value = "Delete candidate")
+	public GenericOutput delete(@PathVariable Long candidateId) {
+		return candidateService.delete(candidateId);
+	}
+
 }

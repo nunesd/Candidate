@@ -1,11 +1,5 @@
 package br.edu.ulbra.election.candidate.client;
 
-//public class VoteClientService {
-//
-//}
-
-
-
 import br.edu.ulbra.election.candidate.output.v1.PartyOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClient;
